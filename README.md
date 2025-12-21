@@ -1,10 +1,10 @@
-# Web Scraper
+# Web Scraper for House Rent Prediction
 
-A web scraping tool designed to collect real estate rental data for building predictive models. This project automates the extraction of house rental listings to support machine learning applications.
+An end-to-end project for collecting real estate rental data and building predictive models. This project automates the extraction of house rental listings to support machine learning applications.
 
 ## 📋 Project Overview
 
-This mini-project focuses on gathering rental property data through web scraping. The collected data will be used to develop a **House Rent Prediction Model** that estimates rental prices based on property features.
+This is an end-to-end mini-project that encompasses the complete data pipeline from gathering rental property data through web scraping to developing a **House Rent Prediction Model** that estimates rental prices based on property features.
 
 ## 🎯 Current Features
 
