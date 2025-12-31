@@ -8,7 +8,13 @@
 <body>
   <h3>Manual Spam Checker</h3>
   <textarea id="emailText" placeholder="Paste email text here..."></textarea>
-  <button id="checkBtn">Check Spam</button>
+  <div class="buttons">
+    <button id="checkBtn">Check Spam</button>
+    <button id="clearBtn">Clear</button>
+  </div>
+  <div id="spinner" style="display:none; text-align:center; margin-top:10px;">
+    <img src="assets/spinner.gif" alt="Loading..." width="30">
+  </div>
   <div id="result"></div>
   <script src="popup.js"></script>
 </body>
