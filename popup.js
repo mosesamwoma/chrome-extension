@@ -1,17 +1,28 @@
 const API_URL = "https://spam-email-detection-model.onrender.com/docs#/default/predict_predict_post";
+const checkBtn = document.getElementById("checkBtn");
+const clearBtn = document.getElementById("clearBtn");
+const emailText = document.getElementById("emailText");
+const resultDiv = document.getElementById("result");
+const spinner = document.getElementById("spinner");
 
-document.getElementById("checkBtn").addEventListener("click", async () => {
-  const text = document.getElementById("emailText").value.trim();
-  const resultDiv = document.getElementById("result");
+function predictEmail(text) {
+  // Example for testing without server
+  const spamWords = ["win", "free", "prize", "money", "urgent"];
+  let count = 0;
+  spamWords.forEach(word => { if(text.toLowerCase().includes(word)) count++; });
+  return { spam: count > 1 };
+}
 
+checkBtn.addEventListener("click", async () => {
+  const text = emailText.value.trim();
   if (!text) {
     resultDiv.textContent = "Please paste an email.";
     resultDiv.style.color = "red";
     return;
   }
 
-  resultDiv.textContent = "Checking...";
-  resultDiv.style.color = "black";
+  spinner.style.display = "flex";
+  resultDiv.textContent = "";
 
   try {
     const response = await fetch(API_URL, {
@@ -21,17 +32,24 @@ document.getElementById("checkBtn").addEventListener("click", async () => {
     });
 
     const data = await response.json();
-
     if (data.spam === true) {
       resultDiv.textContent = "🚨 SPAM EMAIL";
-      resultDiv.style.color = "red";
+      resultDiv.className = "spam";
     } else {
       resultDiv.textContent = "✅ NOT SPAM";
-      resultDiv.style.color = "green";
+      resultDiv.className = "not-spam";
     }
   } catch (error) {
     console.error(error);
     resultDiv.textContent = "Server error. Try again.";
     resultDiv.style.color = "red";
+  } finally {
+    spinner.style.display = "none";
   }
+});
+
+clearBtn.addEventListener("click", () => {
+  emailText.value = "";
+  resultDiv.textContent = "";
+  resultDiv.className = "";
 });
