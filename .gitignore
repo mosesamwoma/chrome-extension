@@ -1,5 +1,24 @@
 __pycache__/
 *.pyc
-.env
 .vscode/
 .DS_Store
+# OS Metadata
+Thumbs.db
+
+# Chrome & Browser
+*.crx
+*.pem
+
+# Development
+node_modules/
+dist/
+.env
+
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# IDE Settings
+.vscode/
+.idea/
