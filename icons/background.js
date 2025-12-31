@@ -1,20 +1,32 @@
-chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
-  if (changeInfo.status === 'complete' && tab.url) {
+// background.js - Handle messages and updates
+chrome.runtime.onInstalled.addListener(() => {
+    console.log('[Spam Shield] Extension installed');
     
-    if (tab.url.includes("suspicious-site.com")) {
+    // Initialize storage
+    chrome.storage.local.set({
+        scannedCount: 0,
+        spamCount: 0,
+        whitelist: [],
+        settings: {
+            autoScan: true,
+            sensitivity: 'medium'
+        }
+    });
+});
 
-      chrome.action.setIcon({
-        path: {
-          "16": "images/icon16.png",
-          "48": "images/icon48.png",
-          "128": "images/icon128.png"
-        },
-        tabId: tabId
-      });
-      
-      
-      chrome.action.setBadgeBackgroundColor({color: '#FF0000'});
-      chrome.action.setBadgeText({text: "!", tabId: tabId});
+// Listen for messages from content script
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+    if (request.type === 'UPDATE_STATS') {
+        chrome.storage.local.get(['scannedCount', 'spamCount'], (data) => {
+            const newScanned = (data.scannedCount || 0) + request.scanned;
+            const newSpam = (data.spamCount || 0) + request.spam;
+            
+            chrome.storage.local.set({
+                scannedCount: newScanned,
+                spamCount: newSpam
+            });
+        });
     }
-  }
+    
+    sendResponse({received: true});
 });
