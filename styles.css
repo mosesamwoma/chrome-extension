@@ -1,6 +1,6 @@
 body {
   font-family: Arial, sans-serif;
-  width: 280px;
+  width: 300px;
   padding: 15px;
   background-color: #f9f9f9;
   border: 1px solid #ddd;
@@ -33,10 +33,7 @@ textarea:focus {
 }
 
 button {
-  width: 100%;
   padding: 8px;
-  background-color: #007bff;
-  color: white;
   border: none;
   border-radius: 6px;
   font-size: 14px;
@@ -44,9 +41,31 @@ button {
   transition: background-color 0.3s, transform 0.2s;
 }
 
+#checkBtn {
+  background-color: #007bff;
+  color: white;
+  margin-right: 5px;
+}
+
+#clearBtn {
+  background-color: #6c757d;
+  color: white;
+}
+
 button:hover {
-  background-color: #0056b3;
-  transform: scale(1.03);
+  opacity: 0.9;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+#spinner {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
 }
 
 #result {
@@ -58,7 +77,6 @@ button:hover {
   min-height: 24px;
 }
 
-/* Optional colors for spam / not-spam */
 #result.spam {
   background-color: #f8d7da;
   color: #721c24;
