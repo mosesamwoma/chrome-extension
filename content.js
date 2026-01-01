@@ -42,7 +42,7 @@ function checkEmail() {
   }
 
   const spinnerElem = document.getElementById("spam-spinner");
-  spinnerElem.style.display = "inline-block";
+  spinnerElem.style.display = "inline-block";  // Show spinner
   banner.textContent = "Checking...";
   banner.appendChild(spinnerElem);
 
@@ -51,21 +51,22 @@ function checkEmail() {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ text: fullText })
   })
-    .then(res => res.json())
-    .then(data => {
-      if (data.prediction === "spam") {
-        banner.textContent = "🚨 SPAM EMAIL";
-        banner.style.backgroundColor = "red";
-      } else {
-        banner.textContent = "✅ NOT SPAM";
-        banner.style.backgroundColor = "green";
-      }
-      banner.appendChild(spinnerElem);
-    })
-    .catch(err => console.error(err))
-    .finally(() => {
-      spinnerElem.style.display = "none";
-    });
+  .then(res => res.json())
+  .then(data => {
+    if (data.prediction === "spam") {
+      banner.textContent = "🚨 SPAM EMAIL";
+      banner.style.backgroundColor = "red";
+    } else {
+      banner.textContent = "✅ NOT SPAM";
+      banner.style.backgroundColor = "green";
+    }
+    banner.appendChild(spinnerElem);
+  })
+  .catch(err => console.error(err))
+  .finally(() => {
+    spinnerElem.style.display = "none";  // Hide spinner
+  });
 }
 
+// Check for new emails every 2 seconds
 setInterval(checkEmail, 2000);
