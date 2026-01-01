@@ -14,7 +14,7 @@ checkBtn.addEventListener("click", async () => {
     return;
   }
 
-  spinner.style.display = "flex";   // Show spinner
+  spinner.style.display = "flex";
   resultDiv.textContent = "";
 
   try {
@@ -37,7 +37,7 @@ checkBtn.addEventListener("click", async () => {
     resultDiv.textContent = "Server error. Try again.";
     resultDiv.style.color = "red";
   } finally {
-    spinner.style.display = "none";  // Hide spinner
+    spinner.style.display = "none";
   }
 });
 
