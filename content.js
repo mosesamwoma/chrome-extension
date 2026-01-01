@@ -42,7 +42,7 @@ function checkEmail() {
   }
 
   const spinnerElem = document.getElementById("spam-spinner");
-  spinnerElem.style.display = "inline-block";  // Show spinner
+  spinnerElem.style.display = "inline-block"; 
   banner.textContent = "Checking...";
   banner.appendChild(spinnerElem);
 
@@ -64,9 +64,8 @@ function checkEmail() {
   })
   .catch(err => console.error(err))
   .finally(() => {
-    spinnerElem.style.display = "none";  // Hide spinner
+    spinnerElem.style.display = "none";
   });
 }
 
-// Check for new emails every 2 seconds
 setInterval(checkEmail, 2000);
