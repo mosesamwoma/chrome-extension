@@ -16,7 +16,6 @@ Spam Email Detector enhances Gmail's native spam filtering using a custom-traine
 - **🧠 ML-Powered** - Trained classification model with ~95% accuracy
 - **🔒 Privacy-First** - All processing happens locally, no data transmission
 - **⚡ Lightweight** - Minimal browser performance impact
-- **📊 Visual Indicators** - Color-coded badges (🔴 Spam / 🟢 Safe / 🟡 Suspicious)
 
 ## Installation
 
